@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
-const ExpressError = require('./Utils/expressError');
+const ErrorHandler = require('./Utils/ErrorHandler');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -144,7 +144,7 @@ app.get('/', (req, res) => {
 
 
 app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404))
+    next(new ErrorHandler('Page Not Found', 404))
 })
 
 app.use((err, req, res, next) => {
